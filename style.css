@@ -1,0 +1,116 @@
+:root {
+  --neo-bg: #ffdf00; /* Bright yellow */
+  --neo-accent-1: #ff00ff; /* Neon pink */
+  --neo-accent-2: #00ffff; /* Cyan */
+  --neo-border: 4px solid #000;
+  --neo-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
+  --neo-shadow-hover: 10px 10px 0px 0px rgba(0,0,0,1);
+  --font-main: 'Space Grotesk', sans-serif;
+  --neo-white: #ffffff;
+  --neo-black: #000000;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--neo-bg);
+  color: var(--neo-black);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.neo-card {
+  background-color: var(--neo-white);
+  border: var(--neo-border);
+  box-shadow: var(--neo-shadow);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.neo-card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: var(--neo-shadow-hover);
+}
+
+.neo-button {
+  display: inline-block;
+  background-color: var(--neo-accent-1);
+  color: var(--neo-black);
+  font-family: var(--font-main);
+  font-weight: 700;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  padding: 1rem 2rem;
+  border: var(--neo-border);
+  box-shadow: var(--neo-shadow);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.neo-button:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: var(--neo-shadow-hover);
+}
+
+.neo-button:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px 0px rgba(0,0,0,1);
+}
+
+.neo-button.secondary {
+  background-color: var(--neo-accent-2);
+}
+
+.brutal-header {
+  padding: 2rem 0;
+  border-bottom: var(--neo-border);
+  margin-bottom: 3rem;
+  background-color: var(--neo-bg);
+}
+
+.brutal-header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border: var(--neo-border);
+}
+
+.hero-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+@media(min-width: 768px) {
+  .hero-section {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.grid-features, .grid-products, .grid-proof {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.grid-products {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
