@@ -1,13 +1,16 @@
 :root {
-  --neo-bg: #ffdf00; /* Bright yellow */
-  --neo-accent-1: #ff00ff; /* Neon pink */
-  --neo-accent-2: #00ffff; /* Cyan */
+  --neo-bg: transparent; 
+  --neo-accent-1: #ff003c; /* Cyberpunk Red/Pink */
+  --neo-accent-2: #00f0ff; /* Cyberpunk Cyan */
+  --neo-accent-3: #fcee0a; /* Cyberpunk Yellow */
+  --neo-accent-4: #39ff14; /* Cyberpunk Green */
   --neo-border: 4px solid #000;
-  --neo-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
-  --neo-shadow-hover: 10px 10px 0px 0px rgba(0,0,0,1);
+  --neo-shadow: 8px 8px 0px 0px rgba(0,0,0,1);
+  --neo-shadow-hover: 12px 12px 0px 0px rgba(0,0,0,1);
   --font-main: 'Space Grotesk', sans-serif;
   --neo-white: #ffffff;
   --neo-black: #000000;
+  --neo-dark: #121212;
 }
 
 * {
@@ -18,10 +21,22 @@
 
 body {
   font-family: var(--font-main);
-  background-color: var(--neo-bg);
+  background-color: var(--neo-dark);
+  background-image: url('cyberfunk.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   color: var(--neo-black);
   line-height: 1.5;
   overflow-x: hidden;
+}
+
+.bg-overlay {
+  position: fixed;
+  top: 0; left:0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: -1;
+  pointer-events: none;
 }
 
 .app-container {
@@ -31,12 +46,13 @@ body {
 }
 
 .neo-card {
-  background-color: var(--neo-white);
+  background-color: var(--neo-accent-3);
   border: var(--neo-border);
   box-shadow: var(--neo-shadow);
   padding: 2rem;
   margin-bottom: 2rem;
   transition: all 0.2s ease-in-out;
+  position: relative;
 }
 
 .neo-card:hover {
@@ -46,10 +62,10 @@ body {
 
 .neo-button {
   display: inline-block;
-  background-color: var(--neo-accent-1);
+  background-color: var(--neo-accent-2);
   color: var(--neo-black);
   font-family: var(--font-main);
-  font-weight: 700;
+  font-weight: 800;
   font-size: 1.25rem;
   text-transform: uppercase;
   padding: 1rem 2rem;
@@ -58,11 +74,13 @@ body {
   cursor: pointer;
   text-decoration: none;
   transition: all 0.2s ease-in-out;
+  letter-spacing: 1px;
 }
 
 .neo-button:hover {
   transform: translate(-4px, -4px);
   box-shadow: var(--neo-shadow-hover);
+  background-color: var(--neo-accent-4);
 }
 
 .neo-button:active {
@@ -71,33 +89,46 @@ body {
 }
 
 .neo-button.secondary {
-  background-color: var(--neo-accent-2);
+  background-color: var(--neo-accent-1);
+  color: #fff;
+}
+.neo-button.secondary:hover {
+  background-color: var(--neo-accent-3);
+  color: #000;
 }
 
 .brutal-header {
-  padding: 2rem 0;
-  border-bottom: var(--neo-border);
+  padding: 1.5rem 0;
+  background-color: var(--neo-accent-1);
+  border: var(--neo-border);
+  box-shadow: var(--neo-shadow);
+  margin-top: 2rem;
   margin-bottom: 3rem;
-  background-color: var(--neo-bg);
+  text-align: center;
+  color: #fff;
 }
 
 .brutal-header h1 {
-  font-size: 3rem;
-  font-weight: 700;
+  font-size: 3.5rem;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: -1px;
+  letter-spacing: 2px;
+  text-shadow: 3px 3px 0 #000;
 }
 
 img {
   max-width: 100%;
   height: auto;
   border: var(--neo-border);
+  box-shadow: var(--neo-shadow);
+  display: block;
 }
 
 .hero-section {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
+  align-items: center;
 }
 @media(min-width: 768px) {
   .hero-section {
@@ -113,4 +144,69 @@ img {
 
 .grid-products {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+  background: var(--neo-black);
+  color: var(--neo-accent-4);
+  border: var(--neo-border);
+  box-shadow: var(--neo-shadow);
+  padding: 1rem 0;
+  margin: 2rem 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.marquee-content {
+  display: inline-block;
+  animation: marquee 15s linear infinite;
+  padding-left: 100%;
+}
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+.glitch {
+  position: relative;
+  display: inline-block;
+  color: #000;
+}
+.glitch::before, .glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  clip: rect(0, 900px, 0, 0);
+}
+.glitch::before {
+  text-shadow: -2px 0 var(--neo-accent-2);
+  animation: glitch-anim 2s infinite linear alternate-reverse;
+}
+.glitch::after {
+  text-shadow: 2px 0 var(--neo-accent-1);
+  animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+  0% { clip: rect(50px, 9999px, 34px, 0); }
+  20% { clip: rect(10px, 9999px, 80px, 0); }
+  40% { clip: rect(90px, 9999px, 10px, 0); }
+  60% { clip: rect(30px, 9999px, 60px, 0); }
+  80% { clip: rect(70px, 9999px, 20px, 0); }
+  100% { clip: rect(10px, 9999px, 90px, 0); }
+}
+@keyframes glitch-anim-2 {
+  0% { clip: rect(20px, 9999px, 90px, 0); }
+  20% { clip: rect(60px, 9999px, 10px, 0); }
+  40% { clip: rect(10px, 9999px, 40px, 0); }
+  60% { clip: rect(80px, 9999px, 50px, 0); }
+  80% { clip: rect(40px, 9999px, 20px, 0); }
+  100% { clip: rect(90px, 9999px, 80px, 0); }
 }
