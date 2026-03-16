@@ -38,4 +38,16 @@ document.addEventListener('DOMContentLoaded', () => {
     card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
     observer.observe(card);
   });
+
+  // Hide Intro Sequence after 3.2 seconds
+  setTimeout(() => {
+    const intro = document.getElementById('cyber-intro');
+    if (intro) {
+      intro.classList.add('hide');
+      document.body.style.overflow = 'auto'; // Restore scroll
+    }
+  }, 3200);
+
+  // Lock scroll initially
+  document.body.style.overflow = 'hidden';
 });

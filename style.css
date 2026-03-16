@@ -210,3 +210,103 @@ img {
   80% { clip: rect(40px, 9999px, 20px, 0); }
   100% { clip: rect(90px, 9999px, 80px, 0); }
 }
+
+.cyber-intro {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: var(--neo-black);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: opacity 0.5s ease;
+}
+
+.cyber-intro.hide {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.intro-images {
+  position: relative;
+  width: 100%; height: 100%;
+}
+
+.intro-kanji {
+  font-size: 10rem;
+  color: var(--neo-accent-1);
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation: flashKanji 3.5s ease-in-out forwards;
+  z-index: 10;
+}
+
+.intro-img {
+  max-width: 90vw;
+  max-height: 80vh;
+  width: auto;
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  filter: contrast(150%) grayscale(20%);
+  border: 5px solid var(--neo-accent-2);
+  box-shadow: 10px 10px 0 var(--neo-accent-1);
+}
+
+.img-1 { animation: flashImage1 0.6s 0.5s forwards; }
+.img-2 { animation: flashImage2 0.6s 1.2s forwards; }
+.img-3 { animation: flashImage3 0.8s 1.9s forwards; }
+
+@keyframes flashKanji {
+  0% { opacity: 0; }
+  10% { opacity: 0.1; }
+  20% { opacity: 0.5; }
+  50% { opacity: 0.2; }
+  80% { opacity: 0.6; }
+  100% { opacity: 0; }
+}
+
+@keyframes flashImage1 {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(1.1); }
+  20%, 80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes flashImage2 {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); filter: invert(1); }
+  20%, 80% { opacity: 1; transform: translate(-50%, -50%) scale(1); filter: invert(0); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes flashImage3 {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(1.1); }
+  10% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  80% { opacity: 1; transform: translate(-50%, -50%) scale(1); filter: sepia(100%) hue-rotate(90deg) saturate(300%); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+}
+
+.intro-warning {
+  font-size: 3rem;
+  color: var(--neo-accent-3);
+  text-align: center;
+  position: absolute;
+  top: 70%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  animation: blinkWarning 0.15s 20 forwards;
+  opacity: 0;
+  z-index: 10;
+  text-shadow: 3px 3px 0 var(--neo-accent-1);
+}
+
+@keyframes blinkWarning {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
